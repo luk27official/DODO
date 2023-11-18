@@ -96,6 +96,13 @@ def run_docking(json_file, data_path=DATA_PATH, work_path=WORK_PATH, output_fold
         check_file_exists(receptor_pdbqt)
         receptor = receptor_pdbqt
 
+    elif ext.lower() == '.cif':
+        # Convert receptor file to file with aminoacid sequence format only
+        receptor_pdbqt = os.path.abspath(base + '.pdbqt')
+        prepare_receptor(receptor, receptor_pdbqt)
+        check_file_exists(receptor_pdbqt)
+        receptor = receptor_pdbqt
+
     # Convert ligand if it's not in pdbqt format
     ##### FIXED duplicities
     base, ext = os.path.splitext(ligand)
